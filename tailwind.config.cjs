@@ -38,6 +38,9 @@ module.exports = {
           900: '#0c4157',
         },
       },
+      transitionDuration: {
+        DEFAULT: defaultTheme.transitionDuration[300],
+      },
     },
   },
   plugins: [],
