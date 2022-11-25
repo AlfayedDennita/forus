@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 const defaultTheme = require('tailwindcss/defaultTheme');
+const typographyPlugin = require('@tailwindcss/typography');
+const lineClampPlugin = require('@tailwindcss/line-clamp');
 
 /** @type {import('tailwindcss').Config} */
 
@@ -43,5 +45,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [typographyPlugin, lineClampPlugin],
 };

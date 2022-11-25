@@ -10,6 +10,19 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
-  "rules": {}
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "react-hooks/exhaustive-deps": 1,
+    "react/jsx-props-no-spreading": 0,
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelComponents": ["InputFieldGroup"],
+        "labelAttributes": ["label"],
+        "controlComponents": ["InputField"],
+        "depth": 3
+      }
+    ]
+  }
 }

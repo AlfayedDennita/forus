@@ -1,23 +1,49 @@
+import { arrayOf, number, string } from 'prop-types';
 import React from 'react';
-import { IoCaretDown, IoCaretUp, IoChatbox } from 'react-icons/io5';
+import { IoChatbox } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
+import { HashLink } from 'react-router-hash-link';
 
-function ThreadsItemFooter() {
+import {
+  asyncDownvoteThread,
+  asyncNeutralizeThreadVote,
+  asyncUpvoteThread,
+} from '../../../states/threads/action';
+import VoteCounter from '../../ui/VoteCounter';
+
+function ThreadsItemFooter({
+  threadId,
+  threadUpvotedBy,
+  threadDownvotedBy,
+  threadTotalComments,
+}) {
+  const dispatch = useDispatch();
+
   return (
-    <footer className="flex gap-3">
-      <section className="items flex gap-1 divide-x rounded bg-zinc-100 p-1 px-2">
-        <button type="button">
-          <IoCaretUp />
-        </button>
-        <p className="px-2 text-sm text-zinc-400">+20</p>
-        <button type="button">
-          <IoCaretDown />
-        </button>
-      </section>
-      <p className="inline-flex items-center gap-1 text-sm text-zinc-400">
-        <IoChatbox /> <span>20</span>
-      </p>
+    <footer className="flex flex-wrap gap-4">
+      <VoteCounter
+        upvoteAction={() => dispatch(asyncUpvoteThread(threadId))}
+        downvoteAction={() => dispatch(asyncDownvoteThread(threadId))}
+        neutralizeAction={() => dispatch(asyncNeutralizeThreadVote(threadId))}
+        upvotedBy={threadUpvotedBy}
+        downvotedBy={threadDownvotedBy}
+      />
+      <HashLink
+        to={`/thread/${threadId}#comments`}
+        className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:underline"
+        title="See Thread Comments"
+      >
+        <IoChatbox /> <span>{threadTotalComments} Comments</span>
+      </HashLink>
     </footer>
   );
 }
+
+ThreadsItemFooter.propTypes = {
+  threadId: string.isRequired,
+  threadUpvotedBy: arrayOf(string).isRequired,
+  threadDownvotedBy: arrayOf(string).isRequired,
+  threadTotalComments: number.isRequired,
+};
 
 export default ThreadsItemFooter;
