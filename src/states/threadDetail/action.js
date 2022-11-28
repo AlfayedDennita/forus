@@ -95,15 +95,7 @@ function asyncUpvoteThreadDetail() {
     try {
       await api.upvoteThread(threadDetail.id);
     } catch (error) {
-      const isInitiallyDownvoted =
-        threadDetail.downVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyDownvoted) {
-        dispatch(downvoteThreadDetailActionCreator(authedUser.id));
-      } else {
-        dispatch(neutralizeThreadDetailVoteActionCreator(authedUser.id));
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
         setGlobalErrorActionCreator(`Upvote Thread Detail: ${error.message}`)
       );
@@ -119,15 +111,7 @@ function asyncDownvoteThreadDetail() {
     try {
       await api.downvoteThread(threadDetail.id);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threadDetail.upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(upvoteThreadDetailActionCreator(authedUser.id));
-      } else {
-        dispatch(neutralizeThreadDetailVoteActionCreator(authedUser.id));
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
         setGlobalErrorActionCreator(`Downvote Thread Detail: ${error.message}`)
       );
@@ -143,15 +127,7 @@ function asyncNeutralizeThreadDetailVote() {
     try {
       await api.neutralizeThreadVote(threadDetail.id);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threadDetail.upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(upvoteThreadDetailActionCreator(authedUser.id));
-      } else {
-        dispatch(downvoteThreadDetailActionCreator(authedUser.id));
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
         setGlobalErrorActionCreator(
           `Neutralize Thread Detail Vote: ${error.message}`
@@ -186,24 +162,7 @@ function asyncUpvoteComment(commentId) {
     try {
       api.upvoteComment({ threadId: threadDetail.id, commentId });
     } catch (error) {
-      const isInitiallyDownvoted =
-        threadDetail.comments
-          .find((comment) => comment.id === commentId)
-          .downVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyDownvoted) {
-        dispatch(
-          downvoteCommentActionCreator({ commentId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeCommentVoteActionCreator({
-            commentId,
-            userId: authedUser.id,
-          })
-        );
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(setGlobalErrorActionCreator(`Upvote Comment: ${error.message}`));
     }
   };
@@ -219,24 +178,7 @@ function asyncDownvoteComment(commentId) {
     try {
       api.downvoteComment({ threadId: threadDetail.id, commentId });
     } catch (error) {
-      const isInitiallyUpvoted =
-        threadDetail.comments
-          .find((comment) => comment.id === commentId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteCommentActionCreator({ commentId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeCommentVoteActionCreator({
-            commentId,
-            userId: authedUser.id,
-          })
-        );
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
         setGlobalErrorActionCreator(`Downvote Comment: ${error.message}`)
       );
@@ -254,24 +196,7 @@ function asyncNeutralizeCommentVote(commentId) {
     try {
       api.neutralizeCommentVote({ threadId: threadDetail.id, commentId });
     } catch (error) {
-      const isInitiallyUpvoted =
-        threadDetail.comments
-          .find((comment) => comment.id === commentId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteCommentActionCreator({ commentId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          downvoteCommentActionCreator({
-            commentId,
-            userId: authedUser.id,
-          })
-        );
-      }
-
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
         setGlobalErrorActionCreator(`Neutralize Comment Vote: ${error.message}`)
       );

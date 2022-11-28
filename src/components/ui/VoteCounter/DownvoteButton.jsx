@@ -8,27 +8,21 @@ function DownvoteButton({ downvoteAction, neutralizeAction, downvoted }) {
   const authedUser = useSelector((states) => states.authedUser);
   const isSignedIn = authedUser !== null;
 
-  const title = useMemo(() => {
-    if (downvoted) {
-      return 'Cancel Downvote';
-    }
-    return 'Downvote';
-  }, [downvoted]);
+  const title = useMemo(
+    () => (downvoted ? 'Cancel Downvote' : 'Downvote'),
+    [downvoted]
+  );
 
   const onClick = () => {
     if (isSignedIn) {
-      if (downvoted) {
-        neutralizeAction();
-      } else {
-        downvoteAction();
-      }
-    } else {
-      swal({
-        title: 'Feature Locked',
-        text: 'You need to be signed in to give downvote.',
-        icon: 'info',
-      });
+      return downvoted ? neutralizeAction() : downvoteAction();
     }
+
+    return swal({
+      title: 'Feature Locked',
+      text: 'You need to be signed in to give downvote.',
+      icon: 'info',
+    });
   };
 
   return (

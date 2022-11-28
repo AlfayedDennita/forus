@@ -8,27 +8,21 @@ function UpvoteButton({ upvoteAction, neutralizeAction, upvoted }) {
   const authedUser = useSelector((states) => states.authedUser);
   const isSignedIn = authedUser !== null;
 
-  const title = useMemo(() => {
-    if (upvoted) {
-      return 'Cancel Upvote';
-    }
-    return 'Upvote';
-  }, [upvoted]);
+  const title = useMemo(
+    () => (upvoted ? 'Cancel Upvote' : 'Upvote'),
+    [upvoted]
+  );
 
   const onClick = () => {
     if (isSignedIn) {
-      if (upvoted) {
-        neutralizeAction();
-      } else {
-        upvoteAction();
-      }
-    } else {
-      swal({
-        title: 'Feature Locked',
-        text: 'You need to be signed in to give upvote.',
-        icon: 'info',
-      });
+      return upvoted ? neutralizeAction() : upvoteAction();
     }
+
+    return swal({
+      title: 'Feature Locked',
+      text: 'You need to be signed in to give upvote.',
+      icon: 'info',
+    });
   };
 
   return (
