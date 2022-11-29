@@ -10,7 +10,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint \"./src/**/*.{js,jsx}\"",
-    "ci:test": "vitest --watchAll=false"
+    "ci:test": "vitest run"
   },
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
