@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  automation-test-job:
+    run-on: ubuntu-latest
+
+    steps:
+      - uses: action/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: action/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install and test
+        run: |
+          npm install
+          npm run ci:test

@@ -13,7 +13,9 @@ function threadsReducer(threads = null, action = {}) {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
-            upVotesBy: [...thread.upVotesBy, action.payload.userId],
+            upVotesBy: [
+              ...new Set([...thread.upVotesBy, action.payload.userId]),
+            ],
             downVotesBy: thread.downVotesBy.filter(
               (userId) => userId !== action.payload.userId
             ),
@@ -29,7 +31,9 @@ function threadsReducer(threads = null, action = {}) {
             upVotesBy: thread.upVotesBy.filter(
               (userId) => userId !== action.payload.userId
             ),
-            downVotesBy: [...thread.downVotesBy, action.payload.userId],
+            downVotesBy: [
+              ...new Set([...thread.downVotesBy, action.payload.userId]),
+            ],
           };
         }
         return thread;

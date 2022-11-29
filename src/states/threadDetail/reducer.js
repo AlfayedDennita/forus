@@ -7,7 +7,9 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.UPVOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
-        upVotesBy: [...threadDetail.upVotesBy, action.payload.userId],
+        upVotesBy: [
+          ...new Set([...threadDetail.upVotesBy, action.payload.userId]),
+        ],
         downVotesBy: threadDetail.downVotesBy.filter(
           (userId) => userId !== action.payload.userId
         ),
@@ -18,7 +20,9 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         upVotesBy: threadDetail.upVotesBy.filter(
           (userId) => userId !== action.payload.userId
         ),
-        downVotesBy: [...threadDetail.downVotesBy, action.payload.userId],
+        downVotesBy: [
+          ...new Set([...threadDetail.downVotesBy, action.payload.userId]),
+        ],
       };
     case ActionType.NEUTRALIZE_THREAD_DETAIL_VOTE:
       return {
@@ -42,7 +46,9 @@ function threadDetailReducer(threadDetail = null, action = {}) {
           if (comment.id === action.payload.commentId) {
             return {
               ...comment,
-              upVotesBy: [...comment.upVotesBy, action.payload.userId],
+              upVotesBy: [
+                ...new Set([...comment.upVotesBy, action.payload.userId]),
+              ],
               downVotesBy: comment.downVotesBy.filter(
                 (userId) => userId !== action.payload.userId
               ),
@@ -61,7 +67,9 @@ function threadDetailReducer(threadDetail = null, action = {}) {
               upVotesBy: comment.upVotesBy.filter(
                 (userId) => userId !== action.payload.userId
               ),
-              downVotesBy: [...comment.downVotesBy, action.payload.userId],
+              downVotesBy: [
+                ...new Set([...comment.downVotesBy, action.payload.userId]),
+              ],
             };
           }
           return comment;
