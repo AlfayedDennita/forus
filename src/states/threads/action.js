@@ -70,26 +70,13 @@ function asyncAddThread({ title, body, category }) {
 function asyncUpvoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authedUser, threads } = getState();
+
     dispatch(upvoteThreadActionCreator({ threadId, userId: authedUser.id }));
 
     try {
       await api.upvoteThread(threadId);
     } catch (error) {
-      const isInitiallyDownvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .downVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyDownvoted) {
-        dispatch(
-          downvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeThreadVoteActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(setGlobalErrorActionCreator(`Upvote Thread: ${error.message}`));
     }
   };
@@ -98,26 +85,13 @@ function asyncUpvoteThread(threadId) {
 function asyncDownvoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authedUser, threads } = getState();
+
     dispatch(downvoteThreadActionCreator({ threadId, userId: authedUser.id }));
 
     try {
       await api.downvoteThread(threadId);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeThreadVoteActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(
         setGlobalErrorActionCreator(`Downvote Thread: ${error.message}`)
       );
@@ -128,6 +102,7 @@ function asyncDownvoteThread(threadId) {
 function asyncNeutralizeThreadVote(threadId) {
   return async (dispatch, getState) => {
     const { authedUser, threads } = getState();
+
     dispatch(
       neutralizeThreadVoteActionCreator({ threadId, userId: authedUser.id })
     );
@@ -135,21 +110,7 @@ function asyncNeutralizeThreadVote(threadId) {
     try {
       await api.neutralizeThreadVote(threadId);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          downvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(
         setGlobalErrorActionCreator(`Neutralize Thread Vote: ${error.message}`)
       );
