@@ -7,7 +7,7 @@ describe('addThreadStatusReducer function', () => {
 
     const nextState = addThreadStatusReducer(initialState, action);
 
-    expect(nextState).toEqual(initialState);
+    expect(nextState).toEqual(1);
   });
 
   it('should return the add thread status with the success status and thread id when given by SET_ADD_THREAD_STATUS_SUCCESS action', () => {
