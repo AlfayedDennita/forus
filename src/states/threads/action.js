@@ -2,7 +2,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar';
 
 import api from '../../utils/api';
 import {
-  setAddThreadStatusFailureActionCreator,
+  setAddThreadStatusFailedActionCreator,
   setAddThreadStatusSuccessActionCreator,
 } from '../addThreadStatus/action';
 import { setGlobalErrorActionCreator } from '../globalError/action';
@@ -60,7 +60,7 @@ function asyncAddThread({ title, body, category }) {
       dispatch(addThreadActionCreator(thread));
       dispatch(setAddThreadStatusSuccessActionCreator(thread.id));
     } catch (error) {
-      dispatch(setAddThreadStatusFailureActionCreator(error.message));
+      dispatch(setAddThreadStatusFailedActionCreator(error.message));
     }
 
     dispatch(hideLoading());

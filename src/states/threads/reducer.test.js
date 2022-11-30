@@ -1,5 +1,23 @@
 import threadsReducer from './reducer';
 
+/**
+ * Test Scenario
+ *
+ * - threadsReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return the sorted threads (by created-date, latest to oldest) when given by RECEIVE_THREADS action
+ *  - should return the threads with the new thread when given by ADD_THREAD action
+ *  - should return the threads with the upvoted thread when given by UPVOTE_THREAD action and initially neutral vote
+ *  - should return the threads with the upvoted thread when given by UPVOTE_THREAD action and initially upvoted
+ *  - should return the threads with the upvoted thread when given by UPVOTE_THREAD action and initially downvoted
+ *  - should return the threads with the downvoted thread when given by DOWNVOTE_THREAD action and initially neutral vote
+ *  - should return the threads with the downvoted thread when given by DOWNVOTE_THREAD action and initially upvoted
+ *  - should return the threads with the downvoted thread when given by DOWNVOTE_THREAD action and initially downvoted
+ *  - should return the threads with the neutralized thread vote when given by NEUTRALIZE_THREAD_VOTE action and initially neutral vote
+ *  - should return the threads with the neutralized thread vote when given by NEUTRALIZE_THREAD_VOTE action and initially upvoted
+ *  - should return the threads with the neutralized thread vote when given by NEUTRALIZE_THREAD_VOTE action and initially downvoted
+ */
+
 describe('threadsReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = null;

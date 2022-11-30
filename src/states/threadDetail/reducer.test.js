@@ -1,5 +1,32 @@
 import threadDetailReducer from './reducer';
 
+/**
+ * Test Scenario
+ *
+ * - threadDetailReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return the thread detail when given by RECEIVE_THREAD_DETAIL action
+ *  - should return the thread detail with the upvoted status when given by UPVOTE_THREAD_DETAIL action and initially neutral vote
+ *  - should return the thread detail with the upvoted status when given by UPVOTE_THREAD_DETAIL action and initially upvoted
+ *  - should return the thread detail with the upvoted status when given by UPVOTE_THREAD_DETAIL action and initially downvoted
+ *  - should return the thread detail with the downvoted status when given by DOWNVOTE_THREAD_DETAIL action and initially neutral vote
+ *  - should return the thread detail with the downvoted status when given by DOWNVOTE_THREAD_DETAIL action and initially upvoted
+ *  - should return the thread detail with the downvoted status when given by DOWNVOTE_THREAD_DETAIL action and initially downvoted
+ *  - should return the thread detail with the neutral vote status when given by NEUTRALIZE_THREAD_DETAIL_VOTE action and initially neutral vote
+ *  - should return the thread detail with the neutral vote status when given by NEUTRALIZE_THREAD_DETAIL_VOTE action and initially upvoted
+ *  - should return the thread detail with the neutral vote status when given by NEUTRALIZE_THREAD_DETAIL_VOTE action and initially downvoted
+ *  - should return the thread detail with the new comment when given by ADD_COMMENT action
+ *  - should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially neutral vote
+ *  - should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially upvoted
+ *  - should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially downvoted
+ *  - should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially neutral vote
+ *  - should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially upvoted
+ *  - should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially downvoted
+ *  - should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially neutral vote
+ *  - should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially upvoted
+ *  - should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially downvoted
+ */
+
 describe('threadDetailReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = null;
@@ -132,7 +159,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the upvoted status when given by DOWNVOTE_THREAD_DETAIL action and initially downvoted', () => {
+  it('should return the thread detail with the downvoted status when given by DOWNVOTE_THREAD_DETAIL action and initially downvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -240,7 +267,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the upvoted comment when given by UPVOTE_COMMENT action and initially neutral vote', () => {
+  it('should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially neutral vote', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -267,8 +294,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [action.payload.userId],
           downVotesBy: [],
         },
@@ -276,7 +302,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the upvoted comment when given by UPVOTE_COMMENT action and initially upvoted', () => {
+  it('should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially upvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -303,8 +329,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [action.payload.userId],
           downVotesBy: [],
         },
@@ -312,7 +337,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the upvoted comment when given by UPVOTE_COMMENT action and initially downvoted', () => {
+  it('should return the thread detail with the upvoted comment status when given by UPVOTE_COMMENT action and initially downvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -339,8 +364,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [action.payload.userId],
           downVotesBy: [],
         },
@@ -348,7 +372,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the downvoted comment when given by DOWNVOTE_COMMENT action and initially neutral vote', () => {
+  it('should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially neutral vote', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -375,8 +399,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [action.payload.userId],
         },
@@ -384,7 +407,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the downvoted comment when given by DOWNVOTE_COMMENT action and initially upvoted', () => {
+  it('should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially upvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -411,8 +434,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [action.payload.userId],
         },
@@ -420,7 +442,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the downvoted comment when given by DOWNVOTE_COMMENT action and initially downvoted', () => {
+  it('should return the thread detail with the downvoted comment status when given by DOWNVOTE_COMMENT action and initially downvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -447,8 +469,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [action.payload.userId],
         },
@@ -456,7 +477,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the neutral comment vote when given by NEUTRALIZE_COMMENT_VOTE action and initially neutral vote', () => {
+  it('should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially neutral vote', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -483,8 +504,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [],
         },
@@ -492,7 +512,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the neutral comment vote when given by NEUTRALIZE_COMMENT_VOTE action and initially upvoted', () => {
+  it('should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially upvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -519,8 +539,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [],
         },
@@ -528,7 +547,7 @@ describe('threadDetailReducer function', () => {
     });
   });
 
-  it('should return the thread detail with the neutral comment vote when given by NEUTRALIZE_COMMENT_VOTE action and initially downvoted', () => {
+  it('should return the thread detail with the neutral comment vote status when given by NEUTRALIZE_COMMENT_VOTE action and initially downvoted', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -555,8 +574,7 @@ describe('threadDetailReducer function', () => {
       ...initialState,
       comments: [
         {
-          id: 'comment-1',
-          content: 'Ini adalah komentar pertama',
+          ...initialState.comments[0],
           upVotesBy: [],
           downVotesBy: [],
         },

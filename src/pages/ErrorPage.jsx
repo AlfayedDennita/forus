@@ -19,7 +19,7 @@ function ErrorPage() {
           <FaRegSadCry className="text-9xl" />
         )}
         <h1 className="font-heading text-xl ">
-          {error.statusText || 'Something Wrong Happened'}
+          {error.statusText || 'Something Went Wrong'}
         </h1>
         <Button type="link" to="/" title="Back to Home">
           Back to Home

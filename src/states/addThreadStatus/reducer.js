@@ -11,7 +11,7 @@ function addThreadStatusReducer(
         threadId: action.payload.threadId,
         errorMessage: null,
       };
-    case ActionType.SET_ADD_THREAD_STATUS_FAILURE:
+    case ActionType.SET_ADD_THREAD_STATUS_FAILED:
       return {
         isSuccess: false,
         threadId: null,

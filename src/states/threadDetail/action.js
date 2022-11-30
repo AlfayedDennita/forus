@@ -139,12 +139,11 @@ function asyncNeutralizeThreadDetailVote() {
 
 function asyncAddComment(content) {
   return async (dispatch, getState) => {
+    const { threadDetail } = getState();
     dispatch(showLoading());
 
     try {
-      const { threadDetail } = getState();
       const comment = await api.createComment(threadDetail.id, content);
-
       dispatch(addCommentActionCreator(comment));
     } catch (error) {
       dispatch(setGlobalErrorActionCreator(`Add Comment: ${error.message}`));
@@ -160,7 +159,7 @@ function asyncUpvoteComment(commentId) {
     dispatch(upvoteCommentActionCreator({ commentId, userId: authedUser.id }));
 
     try {
-      api.upvoteComment({ threadId: threadDetail.id, commentId });
+      await api.upvoteComment({ threadId: threadDetail.id, commentId });
     } catch (error) {
       dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(setGlobalErrorActionCreator(`Upvote Comment: ${error.message}`));
@@ -176,7 +175,7 @@ function asyncDownvoteComment(commentId) {
     );
 
     try {
-      api.downvoteComment({ threadId: threadDetail.id, commentId });
+      await api.downvoteComment({ threadId: threadDetail.id, commentId });
     } catch (error) {
       dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(
@@ -194,7 +193,7 @@ function asyncNeutralizeCommentVote(commentId) {
     );
 
     try {
-      api.neutralizeCommentVote({ threadId: threadDetail.id, commentId });
+      await api.neutralizeCommentVote({ threadId: threadDetail.id, commentId });
     } catch (error) {
       dispatch(receiveThreadDetailActionCreator(threadDetail));
       dispatch(

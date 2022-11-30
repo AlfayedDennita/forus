@@ -1,5 +1,13 @@
 import usersReducer from './reducer';
 
+/**
+ * Test Scenario
+ *
+ * - usersReducer
+ *  - should return the initial state when given by unknown action
+ *  - should return the users when given by RECEIVE_USERS action
+ */
+
 describe('usersReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = null;
@@ -17,15 +25,9 @@ describe('usersReducer function', () => {
       payload: {
         users: [
           {
-            id: 'john_doe',
+            id: 'user-1',
             name: 'John Doe',
             email: 'john@example.com',
-            avatar: 'https://generated-image-url.jpg',
-          },
-          {
-            id: 'jane_doe',
-            name: 'Jane Doe',
-            email: 'jane@example.com',
             avatar: 'https://generated-image-url.jpg',
           },
         ],
