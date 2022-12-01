@@ -40,8 +40,8 @@ describe('ContentMetadataDetail component', () => {
   });
 
   it('should render the user name within a link', () => {
-    const userName = screen.queryByRole('link');
-    expect(userName).toHaveTextContent(props.userName);
+    const userName = screen.queryByRole('link', { text: props.userName });
+    expect(userName).toBeVisible();
   });
 
   it('should render the post date in "time-ago" format', () => {

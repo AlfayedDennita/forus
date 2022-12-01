@@ -36,7 +36,9 @@ describe('DownvoteButton component', () => {
         <DownvoteButton {...props} downvoted />
       </ReduxProvider>
     );
-    const downvoteButton = screen.queryByTitle('Cancel Downvote');
+    const downvoteButton = screen.queryByRole('button', {
+      title: 'Cancel Downvote',
+    });
     expect(downvoteButton).toHaveClass('bg-red-300');
   });
 });

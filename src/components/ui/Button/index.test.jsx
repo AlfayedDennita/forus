@@ -24,19 +24,19 @@ const buttonText = 'Button';
 describe('Button component', () => {
   it('should be rendered correctly when all required props are defined', () => {
     render(<Button type="button">{buttonText}</Button>);
-    const button = screen.queryByText(buttonText);
+    const button = screen.queryByRole('button', { text: buttonText });
     expect(button).toBeVisible();
   });
 
   it('should render a button with type="button" attribute when the type is "button"', () => {
     render(<Button type="button">{buttonText}</Button>);
-    const button = screen.queryByRole('button');
+    const button = screen.queryByRole('button', { text: buttonText });
     expect(button).toHaveAttribute('type', 'button');
   });
 
   it('should render a button with type="submit" attribute when the type is "submit"', () => {
     render(<Button type="submit">{buttonText}</Button>);
-    const button = screen.queryByRole('button');
+    const button = screen.queryByRole('button', { text: buttonText });
     expect(button).toHaveAttribute('type', 'submit');
   });
 
@@ -46,7 +46,7 @@ describe('Button component', () => {
         <Button type="link">{buttonText}</Button>
       </BrowserRouter>
     );
-    const button = screen.queryByRole('link');
+    const button = screen.queryByRole('link', { text: buttonText });
     expect(button).toBeVisible();
   });
 
@@ -56,7 +56,7 @@ describe('Button component', () => {
         {buttonText}
       </Button>
     );
-    const button = screen.queryByText(buttonText);
+    const button = screen.queryByRole('button', { text: buttonText });
     expect(button).toHaveClass('bg-primary-500');
   });
 
@@ -66,7 +66,7 @@ describe('Button component', () => {
         {buttonText}
       </Button>
     );
-    const button = screen.queryByText(buttonText);
+    const button = screen.queryByRole('button', { text: buttonText });
     expect(button).toHaveClass('bg-zinc-100');
   });
 
@@ -80,7 +80,7 @@ describe('Button component', () => {
       </Button>
     );
 
-    const button = screen.queryByText(buttonText);
+    const button = screen.queryByRole('button', { text: buttonText });
 
     await user.click(button);
 

@@ -36,7 +36,9 @@ describe('UpvoteButton component', () => {
         <UpvoteButton {...props} upvoted />
       </ReduxProvider>
     );
-    const upvoteButton = screen.queryByTitle('Cancel Upvote');
+    const upvoteButton = screen.queryByRole('button', {
+      title: 'Cancel Upvote',
+    });
     expect(upvoteButton).toHaveClass('bg-green-300');
   });
 });

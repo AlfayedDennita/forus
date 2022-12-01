@@ -37,7 +37,7 @@ describe('Alert component', () => {
 
     render(<Alert type="success" message={alertMessage} />);
 
-    const closeButton = await screen.findByTitle('Close');
+    const closeButton = screen.queryByRole('button', { title: 'Close' });
 
     await user.click(closeButton);
 
