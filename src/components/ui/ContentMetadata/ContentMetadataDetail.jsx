@@ -5,7 +5,10 @@ import ReactTimeAgo from 'react-time-ago';
 
 function ContentMetadataDetail({ userId, userName, postDate }) {
   return (
-    <section className="flex flex-col items-start text-xs">
+    <section
+      className="flex flex-col items-start text-xs"
+      data-testid="content-metadata-detail"
+    >
       <Link
         to={`/threads/user/${userId}`}
         className="font-semibold hover:underline"

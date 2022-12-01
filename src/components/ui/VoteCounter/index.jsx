@@ -30,7 +30,10 @@ function VoteCounter({
   }, [authedUser, isSignedIn, upvotedBy, downvotedBy]);
 
   return (
-    <section className="grid grid-cols-3 divide-x divide-zinc-200/50 overflow-hidden rounded bg-zinc-100 text-zinc-500">
+    <section
+      className="grid grid-cols-3 divide-x divide-zinc-200/50 overflow-hidden rounded bg-zinc-100 text-zinc-500"
+      data-testid="vote-counter"
+    >
       <UpvoteButton
         upvoteAction={upvoteAction}
         neutralizeAction={neutralizeAction}

@@ -36,7 +36,7 @@ function Button({
 
   return (
     <button
-      type={type === 'button' ? 'button' : 'submit'}
+      type={type === 'submit' ? 'submit' : 'button'}
       className={className}
       {...otherProps}
     >
