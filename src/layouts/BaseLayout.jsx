@@ -33,7 +33,7 @@ function BaseLayout({ withSidebar }) {
         } ${withSidebar && 'md:grid-cols-[4fr_6fr] lg:grid-cols-[3fr_7fr]'}`}
       >
         <main
-          className="flex flex-col divide-y divide-zinc-100 sm:gap-6 sm:divide-y-0 md:order-last"
+          className="flex flex-col divide-y divide-zinc-100 overflow-hidden sm:gap-6 sm:divide-y-0 md:order-last"
           id="main-content"
         >
           <Outlet />
