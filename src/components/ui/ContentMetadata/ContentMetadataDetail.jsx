@@ -17,7 +17,7 @@ function ContentMetadataDetail({ userId, userName, postDate }) {
         {userName}
       </Link>
       <p>
-        Posted <ReactTimeAgo date={Date.parse(postDate)} />
+        Posted <ReactTimeAgo date={new Date(postDate)} />
       </p>
     </section>
   );

@@ -60,7 +60,9 @@ function Alert({ type, message }) {
 }
 
 Alert.propTypes = {
+  /** The type of the alert, it will change the icon and background-color of the alert bar */
   type: oneOf(['success', 'danger', 'warning']).isRequired,
+  /** The message that will be displayed on the alert bar */
   message: node.isRequired,
 };
 

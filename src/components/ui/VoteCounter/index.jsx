@@ -31,7 +31,7 @@ function VoteCounter({
 
   return (
     <section
-      className="grid grid-cols-3 divide-x divide-zinc-200/50 overflow-hidden rounded bg-zinc-100 text-zinc-500"
+      className="grid w-28 grid-cols-3 divide-x divide-zinc-200/50 overflow-hidden rounded bg-zinc-100 text-zinc-500"
       data-testid="vote-counter"
     >
       <UpvoteButton
@@ -52,10 +52,15 @@ function VoteCounter({
 }
 
 VoteCounter.propTypes = {
+  /** It will execute when upvote button clicked */
   upvoteAction: func.isRequired,
+  /** It will execute when downvote button clicked */
   downvoteAction: func.isRequired,
+  /** It will execute when cancel upvote or downvote */
   neutralizeAction: func.isRequired,
+  /** Users (user id) who upvoted */
   upvotedBy: arrayOf(string).isRequired,
+  /** Users (user id) who downvoted */
   downvotedBy: arrayOf(string).isRequired,
 };
 

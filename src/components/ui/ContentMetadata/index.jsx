@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { number, oneOfType, string } from 'prop-types';
 import React from 'react';
 
 import ContentMetadataAvatar from './ContentMetadataAvatar';
@@ -25,10 +25,14 @@ function ContentMetadata({ userId, userAvatar, userName, postDate }) {
 }
 
 ContentMetadata.propTypes = {
+  /** The user id, it's used to create the threads by user page URL */
   userId: string.isRequired,
+  /** The user avatar (image URL) */
   userAvatar: string.isRequired,
+  /** The user name */
   userName: string.isRequired,
-  postDate: string.isRequired,
+  /** The post date */
+  postDate: oneOfType([string, number]).isRequired,
 };
 
 export default ContentMetadata;
