@@ -20,9 +20,13 @@ function InputFieldGroup({ element, labelText, title, children }) {
 }
 
 InputFieldGroup.propTypes = {
+  /** The element type to render as the input field group (label or div) */
   element: oneOf(['label', 'div']),
+  /** The label text */
   labelText: string.isRequired,
+  /** The title to display when the input field group hovered */
   title: string,
+  /** The input field to render in the input field group */
   children: node.isRequired,
 };
 
