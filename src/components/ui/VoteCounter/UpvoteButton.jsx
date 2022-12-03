@@ -43,7 +43,11 @@ function UpvoteButton({ upvoteAction, neutralizeAction, upvoted }) {
 UpvoteButton.propTypes = {
   upvoteAction: func.isRequired,
   neutralizeAction: func.isRequired,
-  upvoted: bool.isRequired,
+  upvoted: bool,
+};
+
+UpvoteButton.defaultProps = {
+  upvoted: false,
 };
 
 export default UpvoteButton;

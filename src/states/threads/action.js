@@ -2,7 +2,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar';
 
 import api from '../../utils/api';
 import {
-  setAddThreadStatusFailureActionCreator,
+  setAddThreadStatusFailedActionCreator,
   setAddThreadStatusSuccessActionCreator,
 } from '../addThreadStatus/action';
 import { setGlobalErrorActionCreator } from '../globalError/action';
@@ -60,7 +60,7 @@ function asyncAddThread({ title, body, category }) {
       dispatch(addThreadActionCreator(thread));
       dispatch(setAddThreadStatusSuccessActionCreator(thread.id));
     } catch (error) {
-      dispatch(setAddThreadStatusFailureActionCreator(error.message));
+      dispatch(setAddThreadStatusFailedActionCreator(error.message));
     }
 
     dispatch(hideLoading());
@@ -75,21 +75,7 @@ function asyncUpvoteThread(threadId) {
     try {
       await api.upvoteThread(threadId);
     } catch (error) {
-      const isInitiallyDownvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .downVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyDownvoted) {
-        dispatch(
-          downvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeThreadVoteActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(setGlobalErrorActionCreator(`Upvote Thread: ${error.message}`));
     }
   };
@@ -103,21 +89,7 @@ function asyncDownvoteThread(threadId) {
     try {
       await api.downvoteThread(threadId);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          neutralizeThreadVoteActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(
         setGlobalErrorActionCreator(`Downvote Thread: ${error.message}`)
       );
@@ -135,21 +107,7 @@ function asyncNeutralizeThreadVote(threadId) {
     try {
       await api.neutralizeThreadVote(threadId);
     } catch (error) {
-      const isInitiallyUpvoted =
-        threads
-          .find((thread) => thread.id === threadId)
-          .upVotesBy.indexOf(authedUser.id) > -1;
-
-      if (isInitiallyUpvoted) {
-        dispatch(
-          upvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      } else {
-        dispatch(
-          downvoteThreadActionCreator({ threadId, userId: authedUser.id })
-        );
-      }
-
+      dispatch(receiveThreadsActionCreator(threads));
       dispatch(
         setGlobalErrorActionCreator(`Neutralize Thread Vote: ${error.message}`)
       );

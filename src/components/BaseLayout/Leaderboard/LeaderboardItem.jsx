@@ -11,7 +11,7 @@ function LeaderboardItem({ rank, userId, userAvatar, userName, score }) {
     <li>
       <Link
         to={`/threads/user/${userId}`}
-        className="group flex items-center justify-between gap-2 py-2 px-5 transition-colors hover:bg-zinc-100/75 lg:px-6"
+        className="group flex flex-wrap items-center justify-between gap-2 py-2 px-5 transition-colors hover:bg-zinc-100/75 lg:px-6"
         title={`See ${userName} Threads`}
       >
         <LeaderboardItemAvatar src={userAvatar} alt={`${userName} Avatar`} />

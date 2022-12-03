@@ -1,11 +1,14 @@
-import { string } from 'prop-types';
+import { number, oneOfType, string } from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 
 function ContentMetadataDetail({ userId, userName, postDate }) {
   return (
-    <section className="flex flex-col items-start text-xs">
+    <section
+      className="flex flex-col items-start text-xs"
+      data-testid="content-metadata-detail"
+    >
       <Link
         to={`/threads/user/${userId}`}
         className="font-semibold hover:underline"
@@ -14,7 +17,7 @@ function ContentMetadataDetail({ userId, userName, postDate }) {
         {userName}
       </Link>
       <p>
-        Posted <ReactTimeAgo date={Date.parse(postDate)} />
+        Posted <ReactTimeAgo date={new Date(postDate)} />
       </p>
     </section>
   );
@@ -23,7 +26,7 @@ function ContentMetadataDetail({ userId, userName, postDate }) {
 ContentMetadataDetail.propTypes = {
   userId: string.isRequired,
   userName: string.isRequired,
-  postDate: string.isRequired,
+  postDate: oneOfType([string, number]).isRequired,
 };
 
 export default ContentMetadataDetail;

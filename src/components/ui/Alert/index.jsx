@@ -11,31 +11,27 @@ function Alert({ type, message }) {
   const [isVisible, setIsVisible] = useState(true);
 
   const className = useMemo(() => {
-    let baseClassName =
+    const baseClassName =
       'flex gap-3 w-full rounded items-center justify-between border px-4 py-3';
 
     switch (type) {
       case 'success':
-        baseClassName += ' bg-green-200 border-green-500 text-green-900';
-        break;
+        return `${baseClassName} bg-green-200 border-green-500 text-green-900`;
       case 'danger':
-        baseClassName += ' bg-red-200 border-red-500 text-red-900';
-        break;
+        return `${baseClassName} bg-red-200 border-red-500 text-red-900`;
       default:
-        baseClassName += ' bg-yellow-200 border-yellow-500 text-yellow-900';
+        return `${baseClassName} bg-yellow-200 border-yellow-500 text-yellow-900`;
     }
-
-    return baseClassName;
   }, [type]);
 
   const icon = useMemo(() => {
     switch (type) {
       case 'success':
-        return <IoCheckmarkDone />;
+        return <IoCheckmarkDone data-testid="alert-success-icon" />;
       case 'danger':
-        return <IoCloseCircle />;
+        return <IoCloseCircle data-testid="alert-danger-icon" />;
       default:
-        return <IoWarning />;
+        return <IoWarning data-testid="alert-warning-icon" />;
     }
   }, [type]);
 
@@ -48,7 +44,7 @@ function Alert({ type, message }) {
   }
 
   return (
-    <section className={className}>
+    <section className={className} data-testid="alert">
       {icon}
       <p className="flex-1 text-sm">{message}</p>
       <button
@@ -64,7 +60,9 @@ function Alert({ type, message }) {
 }
 
 Alert.propTypes = {
+  /** The type of the alert, it will change the icon and background-color of the alert bar */
   type: oneOf(['success', 'danger', 'warning']).isRequired,
+  /** The message that will be displayed on the alert bar */
   message: node.isRequired,
 };
 

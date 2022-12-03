@@ -36,7 +36,7 @@ function Button({
 
   return (
     <button
-      type={type === 'button' ? 'button' : 'submit'}
+      type={type === 'submit' ? 'submit' : 'button'}
       className={className}
       {...otherProps}
     >
@@ -46,9 +46,13 @@ function Button({
 }
 
 Button.propTypes = {
+  /** The type of the button, it will handle how button will be rendered (button tag or anchor tag) */
   type: oneOf(['link', 'button', 'submit']).isRequired,
+  /** The extension style-class of the button */
   className: string,
+  /** The variant of the button, it will change the background-color and text-color of the button */
   variant: oneOf(['primary', 'secondary']),
+  /** The children of the button */
   children: node.isRequired,
 };
 

@@ -43,7 +43,11 @@ function DownvoteButton({ downvoteAction, neutralizeAction, downvoted }) {
 DownvoteButton.propTypes = {
   downvoteAction: func.isRequired,
   neutralizeAction: func.isRequired,
-  downvoted: bool.isRequired,
+  downvoted: bool,
+};
+
+DownvoteButton.defaultProps = {
+  downvoted: false,
 };
 
 export default DownvoteButton;

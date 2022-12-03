@@ -54,9 +54,13 @@ const InputField = React.forwardRef(
 );
 
 InputField.propTypes = {
+  /** The type of the input field, it will change how the input field will be rendered (WYSIWYG or conventional input tag) */
   type: oneOf(['wysiwyg', 'text', 'email', 'search', 'password']).isRequired,
+  /** The extension style-class of the container */
   containerClassName: string,
+  /** The extension style-class of the input field */
   className: string,
+  /** The error message, it will be rendered if its length is greater than 0 */
   errorMessage: string,
 };
 

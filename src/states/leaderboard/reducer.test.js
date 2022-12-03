@@ -1,5 +1,13 @@
 import leaderboardReducer from './reducer';
 
+/**
+ * Test Scenario
+ *
+ * - leaderboardReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return the leaderboard when given by RECEIVE_LEADERBOARD action
+ */
+
 describe('leaderboardReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = null;
@@ -18,21 +26,12 @@ describe('leaderboardReducer function', () => {
         leaderboard: [
           {
             users: {
-              id: 'users-1',
+              id: 'user-1',
               name: 'John Doe',
               email: 'john@example.com',
               avatar: 'https://generated-image-url.jpg',
             },
             score: 10,
-          },
-          {
-            users: {
-              id: 'users-2',
-              name: 'Jane Doe',
-              email: 'jane@example.com',
-              avatar: 'https://generated-image-url.jpg',
-            },
-            score: 5,
           },
         ],
       },

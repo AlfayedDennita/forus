@@ -1,5 +1,18 @@
 import authStatusReducer from './reducer';
 
+/**
+ * Test Scenario
+ *
+ * - authStatusReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return the auth status with the sign-in error message when given by SET_SIGN_IN_ERROR_MESSAGE action
+ *  - should return the auth status with the sign-in error message to be null when given by UNSET_SIGN_IN_ERROR_MESSAGE action
+ *  - should return the auth status with the sign-up error message when given by SET_SIGN_UP_ERROR_MESSAGE action
+ *  - should return the auth status with the sign-up error message to be null when given by UNSET_SIGN_UP_ERROR_MESSAGE action
+ *  - should return the auth status with the after sign-up status to be true when given by SET_IS_AFTER_SIGN_UP action
+ *  - should return the auth status with the after sign-up status to be false when given by UNSET_IS_AFTER_SIGN_UP action
+ */
+
 describe('authStatusReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = {};
@@ -10,12 +23,12 @@ describe('authStatusReducer function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return the auth status with the sign in error message when given by SET_SIGN_IN_ERROR_MESSAGE action', () => {
+  it('should return the auth status with the sign-in error message when given by SET_SIGN_IN_ERROR_MESSAGE action', () => {
     const initialState = {};
     const action = {
       type: 'SET_SIGN_IN_ERROR_MESSAGE',
       payload: {
-        message: 'Error Encountered',
+        message: 'Something went wrong.',
       },
     };
 
@@ -26,7 +39,7 @@ describe('authStatusReducer function', () => {
     });
   });
 
-  it('should return the auth status with the sign in error message to be null when given by UNSET_SIGN_IN_ERROR_MESSAGE action', () => {
+  it('should return the auth status with the sign-in error message to be null when given by UNSET_SIGN_IN_ERROR_MESSAGE action', () => {
     const initialState = {};
     const action = {
       type: 'UNSET_SIGN_IN_ERROR_MESSAGE',
@@ -39,12 +52,12 @@ describe('authStatusReducer function', () => {
     });
   });
 
-  it('should return the auth status with the sign up error message when given by SET_SIGN_UP_ERROR_MESSAGE action', () => {
+  it('should return the auth status with the sign-up error message when given by SET_SIGN_UP_ERROR_MESSAGE action', () => {
     const initialState = {};
     const action = {
       type: 'SET_SIGN_UP_ERROR_MESSAGE',
       payload: {
-        message: 'Error Encountered',
+        message: 'Something went wrong.',
       },
     };
 
@@ -55,7 +68,7 @@ describe('authStatusReducer function', () => {
     });
   });
 
-  it('should return the auth status with the sign up error message to be null when given by UNSET_SIGN_UP_ERROR_MESSAGE action', () => {
+  it('should return the auth status with the sign-up error message to be null when given by UNSET_SIGN_UP_ERROR_MESSAGE action', () => {
     const initialState = {};
     const action = {
       type: 'UNSET_SIGN_UP_ERROR_MESSAGE',
@@ -68,7 +81,7 @@ describe('authStatusReducer function', () => {
     });
   });
 
-  it('should return the auth status with the after sign up status to be true when given by SET_IS_AFTER_SIGN_UP action', () => {
+  it('should return the auth status with the after sign-up status to be true when given by SET_IS_AFTER_SIGN_UP action', () => {
     const initialState = {};
     const action = {
       type: 'SET_IS_AFTER_SIGN_UP',
@@ -81,7 +94,7 @@ describe('authStatusReducer function', () => {
     });
   });
 
-  it('should return the auth status with the after sign up status to be false when given by UNSET_IS_AFTER_SIGN_UP action', () => {
+  it('should return the auth status with the after sign-up status to be false when given by UNSET_IS_AFTER_SIGN_UP action', () => {
     const initialState = {};
     const action = {
       type: 'UNSET_IS_AFTER_SIGN_UP',

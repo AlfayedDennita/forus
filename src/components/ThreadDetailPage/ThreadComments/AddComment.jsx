@@ -14,10 +14,12 @@ function AddComment() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onFormSubmit = ({ comment }) => {
     dispatch(asyncAddComment(comment));
+    reset();
   };
 
   return (
