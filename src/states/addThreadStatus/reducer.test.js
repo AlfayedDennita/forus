@@ -5,8 +5,8 @@ import addThreadStatusReducer from './reducer';
  *
  * - addThreadStatusReducer function
  *  - should return the initial state when given by unknown action
- *  - should return the add thread status with the success status and thread id when given by SET_ADD_THREAD_STATUS_SUCCESS action
- *  - should return the add thread status with the unsuccess status and error message when given by SET_ADD_THREAD_STATUS_FAILED action
+ *  - should return the add thread status with the success status and the thread id when given by SET_ADD_THREAD_STATUS_SUCCESS action
+ *  - should return the add thread status with the unsuccess status and the error message when given by SET_ADD_THREAD_STATUS_FAILED action
  *  - should return the add thread status with the null status when given by UNSET_ADD_THREAD_STATUS action
  */
 
@@ -20,7 +20,7 @@ describe('addThreadStatusReducer function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return the add thread status with the success status and thread id when given by SET_ADD_THREAD_STATUS_SUCCESS action', () => {
+  it('should return the add thread status with the success status and the thread id when given by SET_ADD_THREAD_STATUS_SUCCESS action', () => {
     const initialState = {};
     const action = {
       type: 'SET_ADD_THREAD_STATUS_SUCCESS',
@@ -38,7 +38,7 @@ describe('addThreadStatusReducer function', () => {
     });
   });
 
-  it('should return the add thread status with the unsuccess status and error message when given by SET_ADD_THREAD_STATUS_FAILED action', () => {
+  it('should return the add thread status with the unsuccess status and the error message when given by SET_ADD_THREAD_STATUS_FAILED action', () => {
     const initialState = {};
     const action = {
       type: 'SET_ADD_THREAD_STATUS_FAILED',
