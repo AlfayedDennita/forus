@@ -53,7 +53,7 @@ describe('Sign In spec', () => {
     cy.get('input[type="password"]').clear().type('felix123');
     cy.get('button').contains('Sign In').click();
 
-    cy.get('button>span').contains('Sign Out');
+    cy.get('button > span').contains('Sign Out');
     cy.get('button').contains('Create Thread');
     cy.get('h2').contains('All Threads');
   });
