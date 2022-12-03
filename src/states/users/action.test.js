@@ -9,7 +9,7 @@ import {
 import { asyncRegisterUser } from './action';
 
 /**
- * Test Scenarion
+ * Test Scenario
  *
  * - asyncRegisterUser thunk
  *  - should dispatch action correctly when data posting success
