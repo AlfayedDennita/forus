@@ -17,7 +17,7 @@ function LeaderboardItemScore({ rank, score }) {
 
   return (
     <span
-      className={`flex h-12 w-12 items-center justify-center rounded text-center font-semibold transition-colors ${backgroundColor}`}
+      className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded text-center font-semibold transition-colors ${backgroundColor}`}
     >
       {score}
     </span>

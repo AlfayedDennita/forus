@@ -19,7 +19,7 @@ function LeaderboardItemName({ rank, userName }) {
   }, [rank]);
 
   return (
-    <p className={`flex-1 font-medium ${rank > 5 && 'ml-1'}`}>
+    <p className={`flex-1 truncate font-medium ${rank > 5 && 'ml-1'}`}>
       {emoji} {userName}
     </p>
   );
