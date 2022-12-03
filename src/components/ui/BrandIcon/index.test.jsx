@@ -13,7 +13,7 @@ import BrandIcon from '.';
 describe('BrandIcon component', () => {
   it('should be rendered correctly', () => {
     render(<BrandIcon />);
-    const brandIcon = screen.queryByAltText('Forus Icon');
+    const brandIcon = screen.queryByRole('img', { alt: 'Forus Icon' });
     expect(brandIcon).toBeVisible();
   });
 });
