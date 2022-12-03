@@ -32,7 +32,7 @@ function LeaderboardList({ maxItems }) {
   }, [leaderboard, maxItems]);
 
   return (
-    <ul className="flex flex-col">
+    <ol className="flex flex-col">
       {leaderboardToRender.map((leaderboardItem, index) => (
         <LeaderboardItem
           key={leaderboardItem.user.id}
@@ -43,7 +43,7 @@ function LeaderboardList({ maxItems }) {
           score={leaderboardItem.score}
         />
       ))}
-    </ul>
+    </ol>
   );
 }
 
