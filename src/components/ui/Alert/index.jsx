@@ -27,11 +27,11 @@ function Alert({ type, message }) {
   const icon = useMemo(() => {
     switch (type) {
       case 'success':
-        return <IoCheckmarkDone data-testid="success-icon" />;
+        return <IoCheckmarkDone data-testid="alert-success-icon" />;
       case 'danger':
-        return <IoCloseCircle data-testid="danger-icon" />;
+        return <IoCloseCircle data-testid="alert-danger-icon" />;
       default:
-        return <IoWarning data-testid="warning-icon" />;
+        return <IoWarning data-testid="alert-warning-icon" />;
     }
   }, [type]);
 

@@ -48,19 +48,19 @@ describe('Alert component', () => {
 
   it('should render the correct icon when the type is "success"', () => {
     render(<Alert type="success" message={alertMessage} />);
-    const successIcon = screen.queryByTestId('success-icon');
+    const successIcon = screen.queryByTestId('alert-success-icon');
     expect(successIcon).toBeVisible();
   });
 
   it('should render the correct icon when the type is "danger"', () => {
     render(<Alert type="danger" message={alertMessage} />);
-    const dangerIcon = screen.queryByTestId('danger-icon');
+    const dangerIcon = screen.queryByTestId('alert-danger-icon');
     expect(dangerIcon).toBeVisible();
   });
 
   it('should render the correct icon when the type is "warning"', () => {
     render(<Alert type="warning" message={alertMessage} />);
-    const warningIcon = screen.queryByTestId('warning-icon');
+    const warningIcon = screen.queryByTestId('alert-warning-icon');
     expect(warningIcon).toBeVisible();
   });
 
