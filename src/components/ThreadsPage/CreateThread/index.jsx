@@ -8,7 +8,7 @@ import Button from '../../ui/Button';
 import InputField from '../../ui/InputField';
 
 function CreateThread() {
-  const { authedUser } = useSelector((states) => states);
+  const authedUser = useSelector((states) => states.authedUser);
 
   return (
     <BaseSectionCard withHorizontalPadding>
