@@ -10,7 +10,8 @@ import InputField from '.';
  *
  * InputField component
  *  - should be rendered correctly when all required props are defined
- *  - should have the red border ring and render the error message when the error message is defined
+ *  - should have the red border ring when the error message is defined
+ *  - should render the error message when the error message is defined
  *  - should execute onChange function when it is given as a prop and the input is changed (typed)
  */
 
@@ -23,7 +24,19 @@ describe('InputField component', () => {
     expect(inputField).toBeVisible();
   });
 
-  it('should have the red border ring and render the error message when error message is defined', () => {
+  it('should have the red border ring when the error message is defined', () => {
+    render(
+      <InputField
+        type="text"
+        errorMessage="Something went wrong."
+        placeholder={placeholderText}
+      />
+    );
+    const inputField = screen.queryByPlaceholderText(placeholderText);
+    expect(inputField).toHaveClass('ring-red-300');
+  });
+
+  it('should render the error message when the error message is defined', () => {
     const errorMessageText = 'Something went wrong.';
 
     render(
@@ -34,10 +47,8 @@ describe('InputField component', () => {
       />
     );
 
-    const inputField = screen.queryByPlaceholderText(placeholderText);
     const errorMessage = screen.queryByText(errorMessageText);
 
-    expect(inputField).toHaveClass('ring-red-300');
     expect(errorMessage).toBeVisible();
   });
 
