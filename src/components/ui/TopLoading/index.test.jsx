@@ -20,6 +20,6 @@ describe('TopLoading component', () => {
       </ReduxProvider>
     );
     const topLoading = screen.queryByTestId('top-loading');
-    expect(topLoading).toBeVisible();
+    expect(topLoading).not.toBeNull();
   });
 });
