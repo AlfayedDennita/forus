@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
+import { render } from '../../../../test-utils';
 import Alert from '.';
 
 /**
@@ -37,12 +38,10 @@ describe('Alert component', () => {
 
     render(<Alert type="success" message={alertMessage} />);
 
-    const closeButton = screen.queryByRole('button', { title: 'Close' });
-
+    const closeButton = screen.queryByRole('button', { name: 'Close' });
     await user.click(closeButton);
 
     const alert = screen.queryByTestId(alertTestId);
-
     expect(alert).toBeNull();
   });
 

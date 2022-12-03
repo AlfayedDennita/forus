@@ -1,8 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
 
-import store from '../../../states';
+import { render } from '../../../../test-utils';
 import VoteCounter from '.';
 
 /**
@@ -23,11 +22,7 @@ const props = {
 
 describe('VoteCounter component', () => {
   beforeEach(() => {
-    render(
-      <ReduxProvider store={store}>
-        <VoteCounter {...props} />
-      </ReduxProvider>
-    );
+    render(<VoteCounter {...props} />);
   });
 
   it('should be rendered correctly when all required props are defined', () => {

@@ -25,7 +25,7 @@ function ContentMetadata({ userId, userAvatar, userName, postDate }) {
 }
 
 ContentMetadata.propTypes = {
-  /** The user id, it's used to create the threads by user page URL */
+  /** The user id, it's used to create the threads-by-user page URL */
   userId: string.isRequired,
   /** The user avatar (image URL) */
   userAvatar: string.isRequired,

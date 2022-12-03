@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 
+import { render } from '../../../../test-utils';
 import Button from '.';
 
 /**
@@ -24,29 +24,25 @@ const buttonText = 'Button';
 describe('Button component', () => {
   it('should be rendered correctly when all required props are defined', () => {
     render(<Button type="button">{buttonText}</Button>);
-    const button = screen.queryByRole('button', { text: buttonText });
+    const button = screen.queryByRole('button', { name: buttonText });
     expect(button).toBeVisible();
   });
 
   it('should render a button with type="button" attribute when the type is "button"', () => {
     render(<Button type="button">{buttonText}</Button>);
-    const button = screen.queryByRole('button', { text: buttonText });
+    const button = screen.queryByRole('button', { name: buttonText });
     expect(button).toHaveAttribute('type', 'button');
   });
 
   it('should render a button with type="submit" attribute when the type is "submit"', () => {
     render(<Button type="submit">{buttonText}</Button>);
-    const button = screen.queryByRole('button', { text: buttonText });
+    const button = screen.queryByRole('button', { name: buttonText });
     expect(button).toHaveAttribute('type', 'submit');
   });
 
   it('should render a button link when the type is "link"', () => {
-    render(
-      <BrowserRouter>
-        <Button type="link">{buttonText}</Button>
-      </BrowserRouter>
-    );
-    const button = screen.queryByRole('link', { text: buttonText });
+    render(<Button type="link">{buttonText}</Button>);
+    const button = screen.queryByRole('link', { name: buttonText });
     expect(button).toBeVisible();
   });
 
@@ -56,7 +52,7 @@ describe('Button component', () => {
         {buttonText}
       </Button>
     );
-    const button = screen.queryByRole('button', { text: buttonText });
+    const button = screen.queryByRole('button', { name: buttonText });
     expect(button).toHaveClass('bg-primary-500');
   });
 
@@ -66,7 +62,7 @@ describe('Button component', () => {
         {buttonText}
       </Button>
     );
-    const button = screen.queryByRole('button', { text: buttonText });
+    const button = screen.queryByRole('button', { name: buttonText });
     expect(button).toHaveClass('bg-zinc-100');
   });
 
@@ -80,8 +76,7 @@ describe('Button component', () => {
       </Button>
     );
 
-    const button = screen.queryByRole('button', { text: buttonText });
-
+    const button = screen.queryByRole('button', { name: buttonText });
     await user.click(button);
 
     expect(onClick).toHaveBeenCalled();

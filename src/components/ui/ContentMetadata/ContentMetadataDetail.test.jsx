@@ -1,9 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en.json';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
+import { render } from '../../../../test-utils';
 import ContentMetadataDetail from './ContentMetadataDetail';
 
 /**
@@ -15,8 +14,6 @@ import ContentMetadataDetail from './ContentMetadataDetail';
  *  - should render the post date in "time-ago" format
  */
 
-TimeAgo.addDefaultLocale(en);
-
 const props = {
   userId: 'user-1',
   userName: 'John Doe',
@@ -25,11 +22,7 @@ const props = {
 
 describe('ContentMetadataDetail component', () => {
   beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <ContentMetadataDetail {...props} />
-      </BrowserRouter>
-    );
+    render(<ContentMetadataDetail {...props} />);
   });
 
   it('should be rendered correctly', () => {
@@ -40,7 +33,9 @@ describe('ContentMetadataDetail component', () => {
   });
 
   it('should render the user name within a link', () => {
-    const userName = screen.queryByRole('link', { text: props.userName });
+    const userName = screen.queryByRole('link', {
+      name: `See ${props.userName} Threads`,
+    });
     expect(userName).toBeVisible();
   });
 

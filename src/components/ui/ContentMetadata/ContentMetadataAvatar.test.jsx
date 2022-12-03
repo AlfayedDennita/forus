@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
+import { render } from '../../../../test-utils';
 import ContentMetadataAvatar from './ContentMetadataAvatar';
 
 /**
@@ -20,11 +20,7 @@ const props = {
 
 describe('ContentMetadataAvatar component', () => {
   beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <ContentMetadataAvatar {...props} />
-      </BrowserRouter>
-    );
+    render(<ContentMetadataAvatar {...props} />);
   });
 
   it('should be rendered correctly', () => {
@@ -35,7 +31,9 @@ describe('ContentMetadataAvatar component', () => {
   });
 
   it('should render the avatar image correctly', () => {
-    const avatarImage = screen.queryByRole('img');
+    const avatarImage = screen.queryByRole('img', {
+      name: `${props.userName} Avatar`,
+    });
 
     expect(avatarImage).toBeVisible();
     expect(avatarImage).toHaveAttribute('src', props.userAvatar);

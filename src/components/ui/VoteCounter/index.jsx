@@ -52,15 +52,15 @@ function VoteCounter({
 }
 
 VoteCounter.propTypes = {
-  /** It will execute when upvote button clicked */
+  /** The function that will be executed when the upvote button clicked */
   upvoteAction: func.isRequired,
-  /** It will execute when downvote button clicked */
+  /** The function that will be executed when the downvote button clicked */
   downvoteAction: func.isRequired,
-  /** It will execute when cancel upvote or downvote */
+  /** The function that will be executed when canceling the upvote or downvote */
   neutralizeAction: func.isRequired,
-  /** Users (user id) who upvoted */
+  /** The list of users (user id) who upvoted */
   upvotedBy: arrayOf(string).isRequired,
-  /** Users (user id) who downvoted */
+  /** The list of users (user id) who downvoted */
   downvotedBy: arrayOf(string).isRequired,
 };
 

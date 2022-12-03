@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 
+import { render } from '../../../../test-utils';
 import InputFieldGroup from './InputFieldGroup';
 import InputField from '.';
 
@@ -17,15 +18,17 @@ describe('InputFieldGroup component', () => {
     const placeholderText = 'Input field';
 
     render(
-      <InputFieldGroup labelText={labelText}>
+      <InputFieldGroup labelText={labelText} title={labelText}>
         <InputField type="text" placeholder={placeholderText} />
       </InputFieldGroup>
     );
 
-    const inputFieldGroup = screen.queryByLabelText(labelText);
+    const inputFieldGroup = screen.queryByTitle(labelText);
+    const inputFieldLabel = screen.queryByLabelText(labelText);
     const inputField = screen.queryByPlaceholderText(placeholderText);
 
     expect(inputFieldGroup).toBeVisible();
+    expect(inputFieldLabel).toBeVisible();
     expect(inputField).toBeVisible();
   });
 });

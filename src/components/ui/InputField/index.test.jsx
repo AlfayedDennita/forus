@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { vi } from 'vitest';
 
+import { render } from '../../../../test-utils';
 import InputField from '.';
 
 /**
@@ -48,7 +49,6 @@ describe('InputField component', () => {
     );
 
     const errorMessage = screen.queryByText(errorMessageText);
-
     expect(errorMessage).toBeVisible();
   });
 
@@ -65,7 +65,6 @@ describe('InputField component', () => {
     );
 
     const inputField = screen.queryByPlaceholderText(placeholderText);
-
     await user.type(inputField, 'test');
 
     expect(onChange).toHaveBeenCalled();

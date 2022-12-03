@@ -1,9 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en.json';
+import { screen } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
+import { render } from '../../../../test-utils';
 import ContentMetadata from '.';
 
 /**
@@ -12,8 +10,6 @@ import ContentMetadata from '.';
  * - ContentMetadata component
  *  - should be rendered correctly when all required props are defined
  */
-
-TimeAgo.addDefaultLocale(en);
 
 const props = {
   userId: 'user-1',
@@ -24,11 +20,7 @@ const props = {
 
 describe('ContentMetadata component', () => {
   it('should be rendered correctly when all required props are defined', () => {
-    render(
-      <BrowserRouter>
-        <ContentMetadata {...props} />
-      </BrowserRouter>
-    );
+    render(<ContentMetadata {...props} />);
     const contentMetadata = screen.queryByTestId('content-metadata');
     expect(contentMetadata).toBeVisible();
   });
