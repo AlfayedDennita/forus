@@ -12,7 +12,7 @@ function LatestThreadsItemDetail({
       <p className="font-medium line-clamp-1">{threadTitle}</p>
       <p className="text-sm text-zinc-400">
         by {threadOwnerName} &bull;{' '}
-        <ReactTimeAgo date={Date.parse(threadCreatedDate)} />
+        <ReactTimeAgo date={Date(threadCreatedDate)} />
       </p>
     </section>
   );
