@@ -9,8 +9,8 @@ function BaseSectionCard({
 }) {
   return (
     <section
-      className={`flex flex-col gap-4 bg-white py-5 sm:rounded-lg ${
-        withHorizontalPadding && 'p-5 lg:p-6'
+      className={`flex flex-col gap-4 bg-white py-5 sm:rounded-lg lg:py-6 ${
+        withHorizontalPadding && 'px-5 lg:px-6'
       }`}
       {...otherProps}
     >
