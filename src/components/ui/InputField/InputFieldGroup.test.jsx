@@ -13,8 +13,8 @@ import InputField from '.';
 
 describe('InputFieldGroup component', () => {
   it('should be rendered correctly when all required props are defined', () => {
-    const placeholderText = 'Input field';
     const labelText = 'Input Field Group';
+    const placeholderText = 'Input field';
 
     render(
       <InputFieldGroup labelText={labelText}>
