@@ -6,7 +6,7 @@ import BrandIcon from '.';
 /**
  * Test Scenario
  *
- * - BrancIcon component
+ * - BrandIcon component
  *  - should be rendered correctly
  */
 
