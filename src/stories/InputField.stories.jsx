@@ -34,7 +34,7 @@ WithTypeEmail.args = {
 const WithTypeSearch = Template.bind({});
 WithTypeSearch.args = {
   type: 'search',
-  defaultValue: 'how to be milliona...',
+  defaultValue: 'how to be a milliona...',
 };
 
 const WithTypePassword = Template.bind({});

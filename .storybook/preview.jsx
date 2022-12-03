@@ -10,7 +10,7 @@ import store from '../src/states';
 
 TimeAgo.addDefaultLocale(en);
 
-const parameters = {
+export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
@@ -20,7 +20,7 @@ const parameters = {
   },
 };
 
-const decorators = [
+export const decorators = [
   (Story) => (
     <ReduxProvider store={store}>
       <BrowserRouter>
@@ -29,5 +29,3 @@ const decorators = [
     </ReduxProvider>
   ),
 ];
-
-export { parameters, decorators };

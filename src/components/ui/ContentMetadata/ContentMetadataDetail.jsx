@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { number, oneOfType, string } from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
@@ -26,7 +26,7 @@ function ContentMetadataDetail({ userId, userName, postDate }) {
 ContentMetadataDetail.propTypes = {
   userId: string.isRequired,
   userName: string.isRequired,
-  postDate: string.isRequired,
+  postDate: oneOfType([string, number]).isRequired,
 };
 
 export default ContentMetadataDetail;

@@ -18,16 +18,16 @@ function Template(args) {
   );
 }
 
-const WhenElementLabel = Template.bind({});
-WhenElementLabel.args = {
+const WithElementLabel = Template.bind({});
+WithElementLabel.args = {
   element: 'label',
   labelText: 'Input Field Group (Label)',
 };
 
-const WhenElementDiv = Template.bind({});
-WhenElementDiv.args = {
+const WithElementDiv = Template.bind({});
+WithElementDiv.args = {
   element: 'div',
   labelText: 'Input Field Group (Div)',
 };
 
-export { WhenElementLabel, WhenElementDiv };
+export { WithElementLabel, WithElementDiv };
