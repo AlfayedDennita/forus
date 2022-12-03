@@ -6,7 +6,7 @@ import authedUserReducer from './reducer';
  * - authedUserReducer function
  *  - should return the initial state when given by unknown action
  *  - should return the authed user when given by SET_AUTHED_USER action
- *  - should return null value when given by UNSET_AUTHED_USER action
+ *  - should return null when given by UNSET_AUTHED_USER action
  */
 
 describe('authedUserReducer function', () => {
@@ -38,7 +38,7 @@ describe('authedUserReducer function', () => {
     expect(nextState).toEqual(action.payload.authedUser);
   });
 
-  it('should return null value when given by UNSET_AUTHED_USER action', () => {
+  it('should return null when given by UNSET_AUTHED_USER action', () => {
     const initialState = null;
     const action = {
       type: 'UNSET_AUTHED_USER',
