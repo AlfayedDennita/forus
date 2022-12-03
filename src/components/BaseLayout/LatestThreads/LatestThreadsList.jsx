@@ -23,7 +23,7 @@ function LatestThreadsList({ maxThreads }) {
   const latestThreads = threads.slice(0, maxThreads);
 
   return (
-    <ul className="flex flex-col">
+    <ol className="flex flex-col">
       {latestThreads.map((thread, index) => (
         <LatestThreadsItem
           key={thread.id}
@@ -34,7 +34,7 @@ function LatestThreadsList({ maxThreads }) {
           threadCreatedDate={thread.createdAt}
         />
       ))}
-    </ul>
+    </ol>
   );
 }
 
