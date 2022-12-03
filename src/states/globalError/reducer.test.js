@@ -5,8 +5,8 @@ import globalErrorReducer from './reducer';
  *
  * - globalErrorReducer function
  *  - should return the initial state when given by unknown action
- *  - should return the global error with the error message and error status to be true when given by SET_GLOBAL_ERROR action
- *  - should return the global error with the error message to be null and error status to be false when given by UNSET_GLOBAL_ERROR action
+ *  - should return the global error with the error message and the error status to be true when given by SET_GLOBAL_ERROR action
+ *  - should return the global error with the error message to be null and the error status to be false when given by UNSET_GLOBAL_ERROR action
  */
 
 describe('globalErrorReducer function', () => {
@@ -19,7 +19,7 @@ describe('globalErrorReducer function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return the global error with the error message and error status to be true when given by SET_GLOBAL_ERROR action', () => {
+  it('should return the global error with the error message and the error status to be true when given by SET_GLOBAL_ERROR action', () => {
     const initialState = {};
     const action = {
       type: 'SET_GLOBAL_ERROR',
@@ -36,7 +36,7 @@ describe('globalErrorReducer function', () => {
     });
   });
 
-  it('should return the global error with the error message to be null and error status to be false when given by UNSET_GLOBAL_ERROR action', () => {
+  it('should return the global error with the error message to be null and the error status to be false when given by UNSET_GLOBAL_ERROR action', () => {
     const initialState = {};
     const action = {
       type: 'UNSET_GLOBAL_ERROR',
