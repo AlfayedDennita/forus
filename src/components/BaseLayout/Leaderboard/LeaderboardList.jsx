@@ -1,5 +1,5 @@
 import { number } from 'prop-types';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { asyncReceiveLeaderboard } from '../../../states/leaderboard/action';
@@ -24,12 +24,11 @@ function LeaderboardList({ maxItems }) {
     </p>;
   }
 
-  const leaderboardToRender = useMemo(() => {
-    if (maxItems) {
-      return leaderboard.slice(0, maxItems);
-    }
-    return leaderboard;
-  }, [leaderboard, maxItems]);
+  let leaderboardToRender = leaderboard;
+
+  if (maxItems) {
+    leaderboardToRender = leaderboardToRender.slice(0, maxItems);
+  }
 
   return (
     <ol className="flex flex-col">
