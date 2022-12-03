@@ -13,9 +13,9 @@ import VoteCounter from '.';
  */
 
 const props = {
-  upvoteAction: () => {},
-  downvoteAction: () => {},
-  neutralizeAction: () => {},
+  upvoteAction: () => true,
+  downvoteAction: () => true,
+  neutralizeAction: () => true,
   upvotedBy: ['user-1'],
   downvotedBy: [],
 };

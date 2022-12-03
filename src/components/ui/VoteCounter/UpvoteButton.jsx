@@ -33,7 +33,6 @@ function UpvoteButton({ upvoteAction, neutralizeAction, upvoted }) {
         upvoted && 'bg-green-300'
       }`}
       title={title}
-      data-testid="upvote-button"
     >
       <IoCaretUp />
       <span className="sr-only">{title}</span>
@@ -44,7 +43,11 @@ function UpvoteButton({ upvoteAction, neutralizeAction, upvoted }) {
 UpvoteButton.propTypes = {
   upvoteAction: func.isRequired,
   neutralizeAction: func.isRequired,
-  upvoted: bool.isRequired,
+  upvoted: bool,
+};
+
+UpvoteButton.defaultProps = {
+  upvoted: false,
 };
 
 export default UpvoteButton;

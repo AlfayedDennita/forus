@@ -22,30 +22,24 @@ import DownvoteButton from './DownvoteButton';
  *  - should execute the neutralize action when the button is clicked, the user is signed in, and the status is downvoted
  */
 
-const downvoteButtonTestId = 'downvote-button';
 const props = {
-  downvoteAction: () => {},
-  neutralizeAction: () => {},
-  downvoted: false,
+  downvoteAction: () => true,
+  neutralizeAction: () => true,
 };
 
 describe('DownvoteButton component', () => {
   it('should be rendered correctly when not downvoted', () => {
     render(<DownvoteButton {...props} />);
-
-    const downvoteButton = screen.queryByTestId(downvoteButtonTestId);
-
+    const downvoteButton = screen.queryByRole('button', { name: 'Downvote' });
     expect(downvoteButton).toBeVisible();
-    expect(downvoteButton).toHaveAttribute('title', 'Downvote');
   });
 
   it('should be rendered correctly when downvoted', () => {
     render(<DownvoteButton {...props} downvoted />);
-
-    const downvoteButton = screen.queryByTestId(downvoteButtonTestId);
-
+    const downvoteButton = screen.queryByRole('button', {
+      name: 'Cancel Downvote',
+    });
     expect(downvoteButton).toBeVisible();
-    expect(downvoteButton).toHaveAttribute('title', 'Cancel Downvote');
     expect(downvoteButton).toHaveClass('bg-red-300');
   });
 
@@ -54,31 +48,30 @@ describe('DownvoteButton component', () => {
     store.dispatch(unsetAuthedUserActionCenter());
 
     render(<DownvoteButton {...props} />);
-
-    const downvoteButton = screen.queryByTestId(downvoteButtonTestId);
+    const downvoteButton = screen.queryByRole('button', { name: 'Downvote' });
     await user.click(downvoteButton);
 
-    const alertText = screen.queryByText('Feature Locked');
+    const alertText = screen.queryByText(
+      'You need to be signed in to give downvote.'
+    );
     expect(alertText).not.toBeNull();
   });
 
   it('should execute the downvote action when the button is clicked, the user is signed in, and the status is not downvoted', async () => {
     const user = userEvent.setup();
     const downvoteAction = vi.fn();
-
     store.dispatch(setAuthedUserActionCreator({ id: 'user-1' }));
 
     render(<DownvoteButton {...props} downvoteAction={downvoteAction} />);
-    const downvoteButton = screen.queryByTestId(downvoteButtonTestId);
+    const downvoteButton = screen.queryByRole('button', { name: 'Downvote' });
     await user.click(downvoteButton);
 
-    expect(downvoteAction).toBeCalled();
+    expect(downvoteAction).toHaveBeenCalled();
   });
 
   it('should execute the neutralize action when the button is clicked, the user is signed in, and the status is downvoted', async () => {
     const user = userEvent.setup();
     const neutralizeAction = vi.fn();
-
     store.dispatch(setAuthedUserActionCreator({ id: 'user-1' }));
 
     render(
@@ -88,9 +81,11 @@ describe('DownvoteButton component', () => {
         downvoted
       />
     );
-    const downvoteButton = screen.queryByTestId(downvoteButtonTestId);
+    const downvoteButton = screen.queryByRole('button', {
+      name: 'Cancel Downvote',
+    });
     await user.click(downvoteButton);
 
-    expect(neutralizeAction).toBeCalled();
+    expect(neutralizeAction).toHaveBeenCalled();
   });
 });

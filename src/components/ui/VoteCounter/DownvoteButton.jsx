@@ -33,7 +33,6 @@ function DownvoteButton({ downvoteAction, neutralizeAction, downvoted }) {
         downvoted && 'bg-red-300'
       }`}
       title={title}
-      data-testid="downvote-button"
     >
       <IoCaretDown />
       <span className="sr-only">{title}</span>

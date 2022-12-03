@@ -22,30 +22,24 @@ import UpvoteButton from './UpvoteButton';
  *  - should execute the neutralize action when the button is clicked, the user is signed in, and the status is upvoted
  */
 
-const upvoteButtonTestId = 'upvote-button';
 const props = {
   upvoteAction: () => true,
   neutralizeAction: () => true,
-  upvoted: false,
 };
 
 describe('UpvoteButton component', () => {
   it('should be rendered correctly when not upvoted', () => {
     render(<UpvoteButton {...props} />);
-
-    const upvoteButton = screen.queryByTestId(upvoteButtonTestId);
-
+    const upvoteButton = screen.queryByRole('button', { name: 'Upvote' });
     expect(upvoteButton).toBeVisible();
-    expect(upvoteButton).toHaveAttribute('title', 'Upvote');
   });
 
   it('should be rendered correctly when upvoted', () => {
     render(<UpvoteButton {...props} upvoted />);
-
-    const upvoteButton = screen.queryByTestId(upvoteButtonTestId);
-
+    const upvoteButton = screen.queryByRole('button', {
+      name: 'Cancel Upvote',
+    });
     expect(upvoteButton).toBeVisible();
-    expect(upvoteButton).toHaveAttribute('title', 'Cancel Upvote');
     expect(upvoteButton).toHaveClass('bg-green-300');
   });
 
@@ -54,39 +48,40 @@ describe('UpvoteButton component', () => {
     store.dispatch(unsetAuthedUserActionCenter());
 
     render(<UpvoteButton {...props} />);
-
-    const upvoteButton = screen.queryByTestId(upvoteButtonTestId);
+    const upvoteButton = screen.queryByRole('button', { name: 'Upvote' });
     await user.click(upvoteButton);
 
-    const alertText = screen.queryByText('Feature Locked');
+    const alertText = screen.queryByText(
+      'You need to be signed in to give upvote.'
+    );
     expect(alertText).not.toBeNull();
   });
 
   it('should execute the upvote action when the button is clicked, the user is signed in, and the status is not upvoted', async () => {
     const user = userEvent.setup();
     const upvoteAction = vi.fn();
-
     store.dispatch(setAuthedUserActionCreator({ id: 'user-1' }));
 
     render(<UpvoteButton {...props} upvoteAction={upvoteAction} />);
-    const upvoteButton = screen.queryByTestId(upvoteButtonTestId);
+    const upvoteButton = screen.queryByRole('button', { name: 'Upvote' });
     await user.click(upvoteButton);
 
-    expect(upvoteAction).toBeCalled();
+    expect(upvoteAction).toHaveBeenCalled();
   });
 
   it('should execute the neutralize action when the button is clicked, the user is signed in, and the status is upvoted', async () => {
     const user = userEvent.setup();
     const neutralizeAction = vi.fn();
-
     store.dispatch(setAuthedUserActionCreator({ id: 'user-1' }));
 
     render(
       <UpvoteButton {...props} neutralizeAction={neutralizeAction} upvoted />
     );
-    const upvoteButton = screen.queryByTestId(upvoteButtonTestId);
+    const upvoteButton = screen.queryByRole('button', {
+      name: 'Cancel Upvote',
+    });
     await user.click(upvoteButton);
 
-    expect(neutralizeAction).toBeCalled();
+    expect(neutralizeAction).toHaveBeenCalled();
   });
 });
