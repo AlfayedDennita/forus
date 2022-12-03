@@ -7,10 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "lint": "eslint \"./src/**/*.{js,jsx}\"",
     "test": "vitest",
     "test-coverage": "vitest run --coverage",
     "e2e": "cypress run",
-    "lint": "eslint \"./src/**/*.{js,jsx}\"",
     "ci:test": "vitest run && start-server-and-test dev http-get://localhost:5173 e2e",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
