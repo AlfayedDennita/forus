@@ -13,7 +13,7 @@ import Button from '.';
  *  - should be rendered correctly when all required props are defined
  *  - should render a button with type="button" attribute when the type is "button"
  *  - should render a button with type="submit" attribute when the type is "submit"
- *  - should render a link when the type is "link"
+ *  - should render a button link when the type is "link"
  *  - should have the primary background color when the variant is "primary"
  *  - should have the zinc background color when the variant is "secondary"
  *  - should execute the onClick function when it is given as a prop and the button is clicked
@@ -40,7 +40,7 @@ describe('Button component', () => {
     expect(button).toHaveAttribute('type', 'submit');
   });
 
-  it('should render a link when the type is "link"', () => {
+  it('should render a button link when the type is "link"', () => {
     render(
       <BrowserRouter>
         <Button type="link">{buttonText}</Button>
