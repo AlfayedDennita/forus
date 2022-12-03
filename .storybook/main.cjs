@@ -24,4 +24,7 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
+  docs: {
+    docsPage: 'automatic',
+  },
 };
