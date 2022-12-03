@@ -25,7 +25,7 @@ describe('isPreloadReducer function', () => {
 
     const nextState = isPreloadReducer(initialState, action);
 
-    expect(nextState).toBeTruthy();
+    expect(nextState).toEqual(true);
   });
 
   it('should return false when given by UNSET_IS_PRELOAD action', () => {
@@ -34,6 +34,6 @@ describe('isPreloadReducer function', () => {
 
     const nextState = isPreloadReducer(initialState, action);
 
-    expect(nextState).toBeFalsy();
+    expect(nextState).toEqual(false);
   });
 });
