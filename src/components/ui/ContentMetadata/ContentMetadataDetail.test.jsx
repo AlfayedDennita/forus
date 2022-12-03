@@ -37,6 +37,7 @@ describe('ContentMetadataDetail component', () => {
       name: `See ${props.userName} Threads`,
     });
     expect(userName).toBeVisible();
+    expect(userName).toContainHTML(props.userName);
   });
 
   it('should render the post date in "time-ago" format', () => {
